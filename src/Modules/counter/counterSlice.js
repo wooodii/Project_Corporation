@@ -21,7 +21,6 @@ export const counterSlice = createSlice({
 
 export const {increment, decrement, incrementByAmount} = counterSlice.actions
 
-
 // thunk라고 하는 비동기 논리를 수행할 수 있게 함
 // 일반적인 작업처럼 dispatch 가능하며, 인수로 thunk함수를 사용해 think를 호출
 export const incrementAsync = (amount) => (dispatch) => {
