@@ -1,12 +1,12 @@
+import Login from "./Login";
+import NavBar from "./Navbar";
+import Register from "./Register";
 
 const Home = () => {
-    
-
     return (
         <>
-        dd
         </>
- );
+    );
 }
 
-export default Home;
+export default Home;    
