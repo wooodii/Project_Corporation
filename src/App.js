@@ -6,6 +6,7 @@ import NavBar from './page/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './page/Login';
 import Register from './page/Register';
+import MyPage from './page/MyPage';
 
 function App() { 
   return (
@@ -13,9 +14,9 @@ function App() {
       <NavBar/> 
       <Routes>
         <Route path='/home' element={<Home/>}></Route>
-        <Route path ='/counter' element={<Counter/>}></Route>
         <Route path='/login' element={<Login/>}></Route>
         <Route path='/register' element={<Register/>}></Route>
+        <Route path='/mypage' element={<MyPage/>}></Route>
       </Routes>
     </div>
   );
