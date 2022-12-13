@@ -1,9 +1,11 @@
 // firebase 앱은 서비스 간에 인증을 공유하는 컨테이너와 유사한 객체
 // Import the functions you need from the SDKs you need
+
+// firebase 인증 기능을 사용하기 위한 initializeApp 함수 실행
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import {getFirestore} from "@firebase/firestore";
-// 회원가입 위한 getAuth
+// 회원가입 (로그인, 로그아웃 ,정보수정 ) 위한 getAuth
 import { getAuth } from "firebase/auth";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -26,6 +28,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-
+// 현 접속한 사용자 인증 정보
 export const auth = getAuth(app);
 export const db = getFirestore(app);
