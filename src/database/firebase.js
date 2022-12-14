@@ -32,3 +32,4 @@ const analytics = getAnalytics(app);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const database = getDatabase(app);
+export const apiKeyNum = firebaseConfig.apiKey;

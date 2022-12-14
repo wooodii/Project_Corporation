@@ -3,7 +3,7 @@ import { useState } from "react";
 import { createUserWithEmailAndPassword, getAuth} from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { doc, setDoc } from "firebase/firestore"; 
-import {db} from '../database/firebase';
+import {db} from '../../database/firebase';
 
 const Register = () => {
     const navigate = useNavigate();

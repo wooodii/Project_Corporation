@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // counterSlice.js import 
 import { decrement, increment, incrementByAmount, incrementAsync, selectCount } from "./counterSlice";
+
 // useSelector (redux에서 필요한 데이터 추출)
 // module로 사용하면 겹치치 않고 사용가능 
 import styles from '../counter/Counter.module.css';
@@ -39,15 +40,13 @@ export function Counter() {
           className={styles.button}
           onClick={() =>
             dispatch(incrementByAmount(Number(incrementAmount) || 0))
-          }
-        >
+          }>
           Add Amount
         </button>
 
         <button
           className={styles.asyncButton}
-          onClick={() => dispatch(incrementAsync(Number(incrementAmount) || 0))}
-        >
+          onClick={() => dispatch(incrementAsync(Number(incrementAmount) || 0))}>
           Add Async
         </button>
             </div>

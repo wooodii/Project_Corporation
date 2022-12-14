@@ -1,15 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Nav } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
+import { useNavigate } from "react-router-dom";
+import { apiKeyNum } from "../database/firebase";
 
-const NavBar = () => {
-  const [loginModal, setLoginModal] = useState();
-  
-  function LoginModal(props) {
-    return 
+const NavBar = (props) => {
+  const navigate = useNavigate();
 
-  }
+  // 세션키로 가져오는 값이 있는지 확인해 회원이름변경 > 수정
+  const sessionKey = `firebase:authUser:${apiKeyNum}:[DEFAULT]`
+  const isSession = sessionStorage.getItem(sessionKey) ? true : false;
+  const [loginState, setLoginState] = useState();
+
+  useEffect(() => {
+    if(isSession && isSession) {
+        console.log(sessionKey);
+        setLoginState(loginState);
+      }else{
+        setLoginState("회원정보없음")
+      }
+      }, [setLoginState])
 
   return (
     <>
@@ -23,8 +34,9 @@ const NavBar = () => {
 
           <Navbar.Collapse className="justify-content-end">
             <Navbar.Text>
-              <button onClick={() => {setLoginModal(true)}}>로그인</button>
-              <button onClick={() => {setRegisterModal(true)}}>회원가입</button>
+              {loginState}님 <br/>
+              <button onClick={() => navigate('/login')}>로그인</button>
+              <button onClick={() => navigate('/register')}>회원가입</button>
             </Navbar.Text> 
           </Navbar.Collapse>
         </Container>

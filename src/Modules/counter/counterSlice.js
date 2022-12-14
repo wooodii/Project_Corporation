@@ -1,11 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit"
+// 리덕스에서 리듀서는 switch문과 action함수를 직접 작성했다면,
+// 툴킷에서는 counterSlice로 분리해서 사용 
 
+// 리듀서 함수 작성
 export const counterSlice = createSlice({
     name : 'counter',
+    // 초기값
     initialState  : {
         value : 0
     },
     reducers : {
+        // 함수 안에 state값을 직접 접근해 바꿈
+        // reducer와 다른 점
         increment : (state) => {
             state.value += 1
         },
@@ -19,6 +25,7 @@ export const counterSlice = createSlice({
     },
 })
 
+// 사용할 액션 함수 내보냄
 export const {increment, decrement, incrementByAmount} = counterSlice.actions
 
 // thunk라고 하는 비동기 논리를 수행할 수 있게 함
@@ -29,6 +36,7 @@ export const incrementAsync = (amount) => (dispatch) => {
     }, 1000)
 }
 
-// selector
+// selector // 사용할 액션 함수 내보냄
 export const selectCount = (state) => state.counter.value
+// 사용할 리듀서 내보냄
 export default counterSlice.reducer // 위의 createSlice참고 
