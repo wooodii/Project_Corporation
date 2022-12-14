@@ -3,12 +3,13 @@ import { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { setLoginState } from "./loginSlice";
 
 const Login = () => {
     // reducer
     const login = useSelector((state) => (state.login));
     const dispatch = useDispatch();
-
+    
     // db : const q = query(collection(db, "posts"), where("category", "==", "etc"));
     const [LoginEmail, setLoginEmail] = useState("");
     const [LoginPassword, setLoginPassword] = useState("");
@@ -23,13 +24,14 @@ const Login = () => {
             setPersistence(auth, browserSessionPersistence)
                 .then(() => {
                     return signInWithEmailAndPassword(auth, LoginEmail, LoginPassword);
-                    setLoginCheck()
+                        dispatch(setLoginState({name : login.name}))
                     }).catch((error) => {  
                         setLoginCheck(error + '정보가 저장되지 않습니다. 다시 로그인해주세요')
                     });
                     console.log(result);
                     console.log('success');
                     navigate('/mypage');
+                    setLoginState(true); 
                     // 로그아웃버튼으로 변경하기
         }catch(error){
             console.log(error);

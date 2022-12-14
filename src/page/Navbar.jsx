@@ -14,9 +14,10 @@ const NavBar = (props) => {
   const [loginState, setLoginState] = useState();
 
   useEffect(() => {
-    if(isSession && isSession) {
-        console.log(sessionKey);
+    if(sessionKey && isSession) {
+        console.log(JSON.parse(sessionStorage.getItem(sessionKey)).uid);
         setLoginState(loginState);
+        
       }else{
         setLoginState("회원정보없음")
       }
