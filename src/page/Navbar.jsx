@@ -17,11 +17,10 @@ const NavBar = (props) => {
     if(sessionKey && isSession) {
         console.log(JSON.parse(sessionStorage.getItem(sessionKey)).uid);
         setLoginState(loginState);
-        
       }else{
-        setLoginState("회원정보없음")
+        setLoginState("회원정보없음");
       }
-      }, [setLoginState])
+      }, [setLoginState]);
 
   return (
     <>

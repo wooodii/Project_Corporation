@@ -1,12 +1,11 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import Home from './page/Home';
-import { Counter } from './Modules/counter/Counter';
 import NavBar from './page/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Login from './Modules/login/Login';
-import MyPage from './Modules/login/MyPage';
-import Register from './Modules/login/Register';
+import Login from './page/login/Login';
+import Register from './page/login/Register';
+import MyPage from './page/login/MyPage';
 
 function App() { 
   return (
@@ -17,7 +16,6 @@ function App() {
         <Route path='/login' element={<Login/>}></Route>
         <Route path='/register' element={<Register/>}></Route>
         <Route path='/mypage' element={<MyPage/>}></Route>
-        <Route path='/counter' element={<Counter/>}></Route>
       </Routes>
     </div>
   );
