@@ -4,8 +4,8 @@ import Home from './page/Home';
 import NavBar from './page/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './page/login/Login';
-import Register from './page/login/Register';
 import MyPage from './page/login/MyPage';
+import Register from './page/login/Registers';
 
 function App() { 
   return (

@@ -16,14 +16,15 @@ import { getDatabase } from 'firebase/database';
 
 // 인증키로 확인
 const firebaseConfig = {
-  apiKey: "AIzaSyAynzyF93ksIj6rv_uSMMZTpOP6pvsZELM",
-  authDomain: "counselapp-2038c.firebaseapp.com",
-  projectId: "counselapp-2038c",
-  storageBucket: "counselapp-2038c.appspot.com",
-  messagingSenderId: "617302229029",
-  appId: "1:617302229029:web:59708c1f4ba6f555b0ffcc",
-  measurementId: "G-48K3K5H16H"
+  apiKey: process.env.REACT_APP_FB_API,
+  authDomain: "counsel-cf747.firebaseapp.com",
+  projectId: "counsel-cf747",
+  storageBucket: "counsel-cf747.appspot.com",
+  messagingSenderId: "514362207591",
+  appId: process.env.REACT_APP_FB_APP_ID,
+  measurementId: "G-YBZ74SR2W6"
 };
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);

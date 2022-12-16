@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 // import firebase library 
 import { createUserWithEmailAndPassword, getAuth} from "firebase/auth";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +13,7 @@ const Register = () => {
     const navigate = useNavigate();
     const auth = getAuth();
     const dispatch = useDispatch();
-
+    
     // register
     const [registerEmail, setRegisterEmail] = useState("");
     const [registerPassword, setRegisterPassword] = useState("");
@@ -66,7 +67,7 @@ const Register = () => {
             UserInfo(userCertify.user); console.log(userCertify.user);
             dispatch(loginState(userCertify.user.uid));
         } catch(error) {
-            console.log(error.message);
+            const errorCode = error.code;
             setCheckRegister('회원가입이 완료되지 않았습니다. 다시 시도해주세요');
         }
     };     
@@ -109,11 +110,7 @@ const Register = () => {
                         style={{fontSize :  "11px", color : "red"}}> {setPwdMessage} </div>)}
                 </label>
             </div>
-            
-            {
-                // 입력을 완료한 경우 버튼이 나타나도록
-                (!emailError && !pwdError) ? (<button type="submit" disabled={registerName && registerPassword} >회원가입</button>) : (<div style={{fontSize :  "11px", color : "#D73E3E"}}> 입력하지 않은 정보가 존재합니다. </div>)  
-            }
+        <button type="submit" disabled={registerName && registerPassword} >회원가입</button> 
         </form>
         </div>
         
