@@ -5,14 +5,14 @@ export const loginSlice = createSlice({
     name : 'login',
     initialState : {
         isLoggedIn : false, 
-        UserInfo : [],
+        UserInfo : "",
         currentUser : sessionStorage.getItem("currentUser") // (key,value)
     },
     reducers : {
         loginState : (state, action) => {
             state.isLoggedIn = !state.isLoggedIn // 로그인 상태 변경 
-            state.UserInfo = action.payload 
-            sessionStorage.setItem("currentUser", action.payload);
+            state.UserInfo = action.payload.user
+            sessionStorage.setItem("currentUser", JSON.stringify(action.payload));
         },
         logoutState : (state, action) => {
             state.isLoggedIn = !state.isLoggedIn

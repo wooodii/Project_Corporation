@@ -1,6 +1,6 @@
 import  { browserSessionPersistence, getAuth, GoogleAuthProvider, setPersistence, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { loginState, logoutState } from "../../Modules/loginSlice";
@@ -8,6 +8,7 @@ import { loginState, logoutState } from "../../Modules/loginSlice";
 const Login = () => {
     // reducer
     const dispatch = useDispatch();
+    const user = useSelector((state) => (state.currentUser));
     
     // db : const q = query(collection(db, "posts"), where("category", "==", "etc"));
     const [LoginEmail, setLoginEmail] = useState("");
@@ -27,13 +28,11 @@ const Login = () => {
             const token = credential.accessToken;
             const user = result.user;
             navigate('/mypage');
-            dispatch(loginState(user)); //????
+            dispatch(loginState(user)); 
           })
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            const email = error.customData.email;
-            const credential = GoogleAuthProvider.credentialFromError(error);
             console.log(errorCode, errorMessage);
         });
     };
@@ -51,7 +50,7 @@ const Login = () => {
                     console.log(result);
                     console.log('success');
                     navigate('/mypage');
-                    dispatch(loginState(result)); /// ???? 
+                    dispatch(loginState(result));
                     // 로그아웃버튼으로 변경하기
         }catch(error){
             console.log(error);
@@ -64,7 +63,8 @@ const Login = () => {
         try {
             const logout = await signOut(auth);
             navigate('/');
-            dispatch(logoutState(logout)); // ?????
+            dispatch(logoutState(logout));
+            console.log(logoutState(logout ));
         }catch(error){
             alert(error)
         }
