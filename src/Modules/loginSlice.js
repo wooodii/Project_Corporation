@@ -6,12 +6,12 @@ export const loginSlice = createSlice({
     initialState : {
         isLoggedIn : false, 
         UserInfo : "",
-        currentUser : sessionStorage.getItem("currentUser") // (key,value)
+        currentUser : JSON.parse(sessionStorage.getItem("currentUser")) // (key,value)
     },
     reducers : {
         loginState : (state, action) => {
             state.isLoggedIn = !state.isLoggedIn // 로그인 상태 변경 
-            state.UserInfo = action.payload.user
+            state.currentUser = action.payload
             sessionStorage.setItem("currentUser", JSON.stringify(action.payload));
         },
         logoutState : (state, action) => {

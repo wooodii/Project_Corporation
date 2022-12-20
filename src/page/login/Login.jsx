@@ -27,8 +27,8 @@ const Login = () => {
             const credential = GoogleAuthProvider.credentialFromResult(result);
             const token = credential.accessToken;
             const user = result.user;
-            navigate('/mypage');
             dispatch(loginState(user)); 
+            navigate('/mypage');
           })
           .catch((error) => {
             const errorCode = error.code;
@@ -47,10 +47,10 @@ const Login = () => {
                     }).catch((error) => {  
                         setLoginCheck(error + '정보가 저장되지 않습니다. 다시 로그인해주세요')
                     });
-                    console.log(result);
+                    console.log(result.user);
                     console.log('success');
                     navigate('/mypage');
-                    dispatch(loginState(result));
+                    dispatch(loginState(result.user));
                     // 로그아웃버튼으로 변경하기
         }catch(error){
             console.log(error);

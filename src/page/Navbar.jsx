@@ -8,7 +8,7 @@ import { apiKeyNum, auth } from "../database/firebase";
 import { loginState, logoutState } from "../Modules/loginSlice";
 
 const NavBar = (props) => {
-  const currentUser = useSelector((state) => (state.currentUser));
+  const currentUser = useSelector((state) => (state.login.currentUser));
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -67,7 +67,7 @@ const NavBar = (props) => {
 
           <Navbar.Collapse className="justify-content-end">
             <Navbar.Text>
-              {currentUser ? (<p>{currentUser}</p>) : <p>회원정보없음</p>}
+              {currentUser ? (<p>{currentUser.email}</p>) : <p>회원정보없음</p>}
                <br/>
               {(sessionKey == true) ? <button onClick={() => navigate('/login')}>로그아웃</button> : <button onClick={() => navigate('/login')}>로그인</button> }
               <button onClick={() => navigate('/register')}>회원가입</button>

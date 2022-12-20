@@ -26,7 +26,7 @@ const Register = () => {
             name : user.name,
             email : user.email,
             password : user.password
-        })
+        });
     }
 
     const register = async (e) =>  {

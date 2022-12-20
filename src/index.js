@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+
 // firebase
 import "./database/firebase";
 // react router-dom
@@ -16,7 +17,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/** 값은 app > store.js에서 전달 */}
-    <Provider store ={store}>
+    <Provider store={store}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
