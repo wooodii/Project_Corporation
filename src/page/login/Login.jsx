@@ -1,11 +1,14 @@
 import  { browserSessionPersistence, getAuth, GoogleAuthProvider, setPersistence, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-// import { useDispatch, useSelector } from "react-redux";
-// import { setLoginState } from "../../Modules/loginSlice";
+
+import { loginState, logoutState } from "../../Modules/loginSlice";
 
 const Login = () => {
     // reducer
+    const dispatch = useDispatch();
+    
     // db : const q = query(collection(db, "posts"), where("category", "==", "etc"));
     const [LoginEmail, setLoginEmail] = useState("");
     const [LoginPassword, setLoginPassword] = useState("");
@@ -17,12 +20,14 @@ const Login = () => {
     const googleLogin = () => {
         const provider = new GoogleAuthProvider();
         const auth = getAuth();
-        signInWithPopup(auth, provider)
+        signInWithPopup(auth, provider);
+        setPersistence(auth, browserSessionPersistence)
           .then((result) => {
             const credential = GoogleAuthProvider.credentialFromResult(result);
             const token = credential.accessToken;
             const user = result.user;
             navigate('/mypage');
+            dispatch(loginState(user)); //????
           })
           .catch((error) => {
             const errorCode = error.code;
@@ -46,6 +51,7 @@ const Login = () => {
                     console.log(result);
                     console.log('success');
                     navigate('/mypage');
+                    dispatch(loginState(result)); /// ???? 
                     // 로그아웃버튼으로 변경하기
         }catch(error){
             console.log(error);
@@ -56,8 +62,9 @@ const Login = () => {
     // 로그아웃
     const signout = async () => {
         try {
-            await signOut(auth);
+            const logout = await signOut(auth);
             navigate('/');
+            dispatch(logoutState(logout)); // ?????
         }catch(error){
             alert(error)
         }
@@ -65,7 +72,7 @@ const Login = () => {
 
     return (
         <>
-            <input tpye="email" placeholder="Email" onChange={(e) => {
+            <input type="email" placeholder="Email" onChange={(e) => {
                 setLoginEmail(e.target.value); 
             }}/> <br/>
             <input placeholder="Password" onChange={(e) => {

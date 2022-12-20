@@ -4,20 +4,25 @@ import { createSlice } from "@reduxjs/toolkit";
 export const loginSlice = createSlice({
     name : 'login',
     initialState : {
-        isLoggedIn : false,
-        currentUser : sessionStorage.getItem("currentUser")
+        isLoggedIn : false, 
+        UserInfo : [],
+        currentUser : sessionStorage.getItem("currentUser") // (key,value)
     },
     reducers : {
         loginState : (state, action) => {
-            state.loginState = action.payload
+            state.isLoggedIn = !state.isLoggedIn // 로그인 상태 변경 
+            state.UserInfo = action.payload 
             sessionStorage.setItem("currentUser", action.payload);
         },
         logoutState : (state, action) => {
-            state.name = action.payload
-            sessionStorage.removeItem("currentUser");
+            state.isLoggedIn = !state.isLoggedIn
+            state.UserInfo = action.payload
+            sessionStorage.removeItem("currentUser"); // 특정 키값 삭제
+            // clear는 전체 데이터 삭제
         }
     }
 });
+
 
 export const {loginState, logoutState} = loginSlice.actions;
 // export const selectLogin = (state) => state.login.value

@@ -16,12 +16,12 @@ import { getDatabase } from 'firebase/database';
 
 // 인증키로 확인
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FB_API,
+  apiKey: "AIzaSyAkHOr2lpst29Dq70Hiv0dN_JIJdT1uPBo",
   authDomain: "counsel-cf747.firebaseapp.com",
   projectId: "counsel-cf747",
   storageBucket: "counsel-cf747.appspot.com",
   messagingSenderId: "514362207591",
-  appId: process.env.REACT_APP_FB_APP_ID,
+  appId: "1:514362207591:web:6bb39642551d79fb3113c2",
   measurementId: "G-YBZ74SR2W6"
 };
 
