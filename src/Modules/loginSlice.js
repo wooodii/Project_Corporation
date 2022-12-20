@@ -5,7 +5,6 @@ export const loginSlice = createSlice({
     name : 'login',
     initialState : {
         isLoggedIn : false, 
-        UserInfo : "",
         currentUser : JSON.parse(sessionStorage.getItem("currentUser")) // (key,value)
     },
     reducers : {
