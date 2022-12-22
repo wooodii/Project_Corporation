@@ -1,11 +1,10 @@
 // redux store 인스턴스 생성
+import { getDefaultMiddleware } from '@reduxjs/toolkit';
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../Modules/counterSlice';
 import loginReducer from '../Modules/loginSlice';
 import cartSlice from '../Modules/cartSlice';
-import { getDefaultMiddleware } from '@reduxjs/toolkit';
 import uiSlice from '../Modules/uiSlice';
-
+import BoardSlice from '../Modules/boardSlice';
 
 // configureStore 를 reducer 전달
 // 리덕스 상태 개체를 상태 슬라이스로 분할
@@ -14,7 +13,8 @@ export default configureStore({
   reducer: {
     login : loginReducer,
     ui : uiSlice.reducer,
-    cart : cartSlice.reducer
+    cart : cartSlice.reducer,
+    board : BoardSlice.reducer 
   },
   middleware: getDefaultMiddleware({
     serializableCheck: {
