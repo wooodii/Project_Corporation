@@ -1,4 +1,5 @@
 import ProductDummy from "../../database/ProductDummy";
+import ProductItem from '../Shop/ProductItem';
 
 const Products = (props) =>{
     
@@ -7,7 +8,7 @@ const Products = (props) =>{
             <h2>좋아하는 상품을 구매하세요!</h2>
             <ul>
                 {ProductDummy.map((p) => (
-                    p
+                    <ProductItem/>
                 ))}
             </ul>
         </section>
