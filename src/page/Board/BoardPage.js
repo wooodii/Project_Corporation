@@ -1,41 +1,43 @@
-import { createAction } from "@reduxjs/toolkit";
+// import { createAction } from "@reduxjs/toolkit";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { deleteBoard } from "../../Modules/boardSlice";
 
 const BoardPage = () => {
     const {id} = useParams();
+    console.log(id);
     const boardList = useSelector((state) => (state.board));
-    const board = boardList.find((board) => (board.boardId === id));
+    console.log(boardList);
+    const board = boardList.find((board) => (board.boardId === Number(id)));
+    console.log(board);
     // const boardFind = useSelector((state) => (state.board.find((board) => (board.boardId == id))))
 
-    // board = {board}?
     return (
         <>
-        <BoardPrint board={board}/>
-            {/* <p>{board ? <BoardPrint board={board}/> : "존재하지 않는 페이지입니다."} </p>  */}
+             <p>{board ? <BoardPrint board={board}/> : "존재하지 않는 페이지입니다."} </p>  
         </>
     );
 }
 
 export default BoardPage;
 
-
-// boardPrint로 board가 넘어가지 않음
 const BoardPrint = ({board}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const onDeleteBoard = (id) =>{
-        dispatch(createAction.deleteBoard(id));
+        dispatch(deleteBoard(id));
         navigate('/board');
+        console.log(deleteBoard(id));
+        console.log(id);
     }
 
     const toModifyBoard = (board) => {
+        // 수정화면이동 
+        // state : board로 작성하면 board값을 전달해서 writeform에서 통째로 사용함
         navigate('/board/writeform', {state : board});
     }
-    
-    console.log(board);
 
     return(
         <Container>

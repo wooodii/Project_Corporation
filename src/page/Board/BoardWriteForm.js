@@ -1,8 +1,8 @@
-import { createAction } from "@reduxjs/toolkit";
 import { useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
+import { modifyBoard } from "../../Modules/boardSlice";
 
 const BoardWriteForm = () => {
     const location = useLocation();
@@ -17,7 +17,7 @@ const BoardWriteForm = () => {
     }
 
     const onModifyBoard = () => {
-        dispatch(createAction.modifyBoard(board));
+        dispatch(modifyBoard(board));
         navigate('/board/' + board.boardId);
     }
 

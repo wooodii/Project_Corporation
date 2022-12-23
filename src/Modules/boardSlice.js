@@ -6,21 +6,21 @@ export const BoardSlice = createSlice({
         boardId : 1,
         userEmail : "rlawlgus@naver.com",
         title : "첫번째 제목", 
-        content : "", 
+        content : "첫번째 게시물 내용임", 
         view : "1",
         like : 1
     },{
         boardId : 2, 
         userEmail : "FFF", 
         title : "두번째 제목", 
-        content :  "",
+        content :  "두번째 게시물 내용",
         view : "1",
         like : "1"
     }],
     reducers : {
         deleteBoard(state, action) {
             const newPageList = state.filter(
-                (board) => (board.pageId !== action.payload))
+                (board) => (board.boardId !== action.payload))
             return newPageList;
         },
         modifyBoard(state, action){
@@ -32,5 +32,5 @@ export const BoardSlice = createSlice({
     }
 }); 
 
-export const boardAction = BoardSlice.actions;
+export const {deleteBoard, modifyBoard} = BoardSlice.actions;
 export default BoardSlice;

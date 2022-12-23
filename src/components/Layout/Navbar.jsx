@@ -60,11 +60,11 @@ const NavBar = (props) => {
 
           <Navbar.Collapse className="justify-content-end">
             <Navbar.Text>
-              {currentUser ? (<p>{currentUser.email}</p>) : <p>회원정보없음</p>}
+              {currentUser ? (<span>{currentUser.email}</span>) : <span>회원정보없음</span>}
                <br/>
               {(sessionKey === true) ? <button onClick={() => navigate('/login')}>로그아웃</button> : <button onClick={() => navigate('/login')}>로그인</button> }
               <button onClick={() => navigate('/register')}>회원가입</button>
-              <CartBtn onClick={() => navigate('/cart')}/>
+              <CartBtn />
             </Navbar.Text> 
           </Navbar.Collapse>
         </Container>

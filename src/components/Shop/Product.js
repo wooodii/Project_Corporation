@@ -1,11 +1,11 @@
-import ProductItems from "./ProductItems";
+import AvailableProducts from "./AvailableProduct";
 import ProductSummary from "./ProductSummary";
 
 const Product = () => {
     return (
         <>
             <ProductSummary/>
-            <ProductItems/>
+            <AvailableProducts/>
         </>
     )
 }
