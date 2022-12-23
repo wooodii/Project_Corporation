@@ -1,3 +1,4 @@
+import { createAction } from "@reduxjs/toolkit";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -6,33 +7,35 @@ const BoardPage = () => {
     const {id} = useParams();
     const boardList = useSelector((state) => (state.board));
     const board = boardList.find((board) => (board.boardId === id));
-
     // const boardFind = useSelector((state) => (state.board.find((board) => (board.boardId == id))))
 
-
+    // board = {board}?
     return (
         <>
-            <p>{board ? <BoardPrint board={board}/> : "존재하지 않는 페이지입니다."} </p> 
+        <BoardPrint board={board}/>
+            {/* <p>{board ? <BoardPrint board={board}/> : "존재하지 않는 페이지입니다."} </p>  */}
         </>
     );
 }
- 
+
 export default BoardPage;
 
 
+// boardPrint로 board가 넘어가지 않음
 const BoardPrint = ({board}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-//     const onDeleteBoard = (id) =>{
-//         const boardList = useSelector((state) => (state.board));
-//         dispatch(boardList.deleteBoard(id));
-//         navigate('/board')
-//     }
-// 
-//     const toModifyBoard = (board) => {
-//         navigate('/board/modifyform', {state : board})
-//     }
+    const onDeleteBoard = (id) =>{
+        dispatch(createAction.deleteBoard(id));
+        navigate('/board');
+    }
+
+    const toModifyBoard = (board) => {
+        navigate('/board/writeform', {state : board});
+    }
+    
+    console.log(board);
 
     return(
         <Container>
@@ -44,8 +47,8 @@ const BoardPrint = ({board}) => {
                     <h2>{board.title}</h2>
                 </Col>
                 <Col>
-                    <Button>수정</Button>
-                    <Button>삭제</Button>
+                    <Button onClick={() => {toModifyBoard(board)}}>수정</Button>
+                    <Button onClick={() => {onDeleteBoard(board.boardId)}}>삭제</Button>
                 </Col>
             </Row>
             <Row>

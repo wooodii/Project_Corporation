@@ -19,17 +19,18 @@ export const BoardSlice = createSlice({
     }],
     reducers : {
         deleteBoard(state, action) {
-            const newPageList = state.filter((board) => (board.pageId !== action.payload))
+            const newPageList = state.filter(
+                (board) => (board.pageId !== action.payload))
             return newPageList;
         },
         modifyBoard(state, action){
-            const modifyPage = state.map((board) => (
+            const modifyPage = state.map(
+                (board) => (
                 board.boardId == action.payload.boardId ? action.payload : board))
                 return modifyPage;
             }
     }
 }); 
 
-export const {deleteBoard, modifyBoard} = BoardSlice.actions;
+export const boardAction = BoardSlice.actions;
 export default BoardSlice;
-// export const bulletinAction = BoardSlice.actions;

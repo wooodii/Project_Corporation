@@ -4,9 +4,9 @@ import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import CartBtn from "../components/Cart/CartBtn";
-import { apiKeyNum, auth } from "../database/firebase";
-import { loginState, logoutState } from "../Modules/loginSlice";
+import { auth, apiKeyNum } from "../../database/firebase";
+import { loginState, logoutState } from "../../Modules/loginSlice";
+import CartBtn from "../Cart/CartBtn";
 
 const NavBar = (props) => {
   const currentUser = useSelector((state) => (state.login.currentUser));
@@ -64,7 +64,7 @@ const NavBar = (props) => {
                <br/>
               {(sessionKey === true) ? <button onClick={() => navigate('/login')}>로그아웃</button> : <button onClick={() => navigate('/login')}>로그인</button> }
               <button onClick={() => navigate('/register')}>회원가입</button>
-              <button onClick={() => navigate('/cart')}>장바구니</button>
+              <CartBtn onClick={() => navigate('/cart')}/>
             </Navbar.Text> 
           </Navbar.Collapse>
         </Container>

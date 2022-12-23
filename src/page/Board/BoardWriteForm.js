@@ -1,26 +1,27 @@
+import { createAction } from "@reduxjs/toolkit";
 import { useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { modifyBoard } from "../../Modules/boardSlice";
 
 const BoardWriteForm = () => {
-    // useLocation 사용법? 
     const location = useLocation();
     const [board, setBoard] = useState(location.state);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    // [e.target.name] ??
     const onChange = (e) => {
         setBoard({...board, [e.target.name]: e.target.value})
     }
 
     const onModifyBoard = () => {
-        dispatch(modifyBoard(board));
-        navigate('/board/' + board.boardId)
+        dispatch(createAction.modifyBoard(board));
+        navigate('/board/' + board.boardId);
     }
 
+    console.log(location);
     return (
         <Container>
             <Row>
@@ -44,7 +45,8 @@ const BoardWriteForm = () => {
                 <Col>
                     <textarea
                         name="content"
-                        onChange={(e) => {onChange(e)}}>{board.content}</textarea>
+                        onChange={(e) => {onChange(e)}}>{board.content}
+                    </textarea>
                 </Col>
             </Row>
         </Container>

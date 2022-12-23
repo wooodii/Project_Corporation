@@ -7,7 +7,7 @@ const Board = () => {
     const navigate = useNavigate();
 
     const toBoardPage = (id) => {
-        navigate('/board/' + id);
+        navigate('/board/'+id);
     }
 
     return (
