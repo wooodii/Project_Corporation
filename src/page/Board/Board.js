@@ -1,6 +1,7 @@
 import { Table } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import QA from "./QA";
 
 const Board = () => {
     const BoardList = useSelector((state) => state.board);
@@ -12,9 +13,8 @@ const Board = () => {
 
     return (
         <>
-        <header>
-            <h3>문의게시판</h3>
-        </header>
+        <contain>
+        <header> <h3>문의게시판</h3> </header>
 
         <hr/>
         
@@ -39,6 +39,8 @@ const Board = () => {
                 ))}
             </tbody>
         </Table>
+        </contain>
+       
         </>
     );
 }

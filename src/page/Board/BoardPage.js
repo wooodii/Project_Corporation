@@ -51,6 +51,7 @@ const BoardPrint = ({board}) => {
                 <Col>
                     <Button onClick={() => {toModifyBoard(board)}}>수정</Button>
                     <Button onClick={() => {onDeleteBoard(board.boardId)}}>삭제</Button>
+                    <Button onClick={() => {navigate(-1)}}>돌아가기</Button>
                 </Col>
             </Row>
             <Row>

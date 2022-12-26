@@ -11,6 +11,8 @@ import Board from './page/Board/Board';
 import BoardPage from './page/Board/BoardPage';
 import BoardWriteForm from './page/Board/BoardWriteForm';
 import NavBar from './components/Layout/Navbar';
+import ProdutPage from './components/Product/ProductPage';
+import ClientPage from './page/Board/ClientPage';
 
 function App() { 
   return (
@@ -24,11 +26,14 @@ function App() {
         
         <Route path='/cart' element={<Cart/>}></Route>
         
+        <Route path='/guest' element={<Guest/> }></Route>
+
+        <Route path='/client' element={<ClientPage/>}></Route>
         <Route path='/board' element={<Board/>}></Route>
         <Route path='/board/:id' element={<BoardPage/>}></Route>
         <Route path='/board/writeform' element={<BoardWriteForm/>}></Route>
-        
-        <Route path='/guest' element={<Guest/> }></Route>
+
+        <Route path='/product' element={<ProdutPage/>}></Route>
       </Routes>
     </div>
   );

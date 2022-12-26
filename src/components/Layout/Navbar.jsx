@@ -50,25 +50,52 @@ const NavBar = (props) => {
 
   return (
     <>
-      <Navbar>
-        <Container>
-          <Nav>
-            <Nav.Link href="#home">home</Nav.Link> 
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
-          </Nav>
+      {
+        currentUser ? (
+          <Navbar>
+          <Container>
+            <Nav>
+              <Nav.Link href="/product">제품보기</Nav.Link> 
+              <Nav.Link href="/recommendgift">선물추천</Nav.Link>
+              <Nav.Link href="/introstore">매장보기</Nav.Link>
+            </Nav>
+  
+            <Navbar.Collapse className="justify-content-end">
+              <Navbar.Text>
+                {currentUser ? (<span>{currentUser.email}</span>) : <span>회원정보없음</span>}
+                 <br/>
+                <button onClick={() => {navigate('/login'); dispatch(logoutState()) }}>로그아웃 </button>
+                <button onClick={() => navigate('/register')}>정보수정</button>
+                <button onClick={() => navigate('/client')}>고객센터</button>
+                <CartBtn />
+              </Navbar.Text> 
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
+        ) : (
+          <Navbar>
+          <Container>
+            <Nav>
+              <Nav.Link href="/product">제품보기</Nav.Link> 
+              <Nav.Link href="/recommendgift">선물추천</Nav.Link>
+              <Nav.Link href="/introstore">매장보기</Nav.Link>
+            </Nav>
+  
+            <Navbar.Collapse className="justify-content-end">
+              <Navbar.Text>
+                {currentUser ? (<span>{currentUser.email}</span>) : <span>회원정보없음</span>}
+                 <br/>
+                <button onClick={() => navigate('/login')}>로그인</button> 
+                <button onClick={() => navigate('/register')}>회원가입</button>
+                <button onClick={() => navigate('/client')}>고객센터</button>
+                <CartBtn />
+              </Navbar.Text> 
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
+        )
+      }
 
-          <Navbar.Collapse className="justify-content-end">
-            <Navbar.Text>
-              {currentUser ? (<span>{currentUser.email}</span>) : <span>회원정보없음</span>}
-               <br/>
-              {(sessionKey === true) ? <button onClick={() => navigate('/login')}>로그아웃</button> : <button onClick={() => navigate('/login')}>로그인</button> }
-              <button onClick={() => navigate('/register')}>회원가입</button>
-              <CartBtn />
-            </Navbar.Text> 
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
     </>
   );
 };
