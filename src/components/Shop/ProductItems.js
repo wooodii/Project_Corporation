@@ -1,24 +1,21 @@
-import ProductDummy from "../../database/ProductDummy";
 import ProductItemForm from "./ProductItemForm";
 
-const ProductItems = () =>{
-    const price = `$${ProductDummy.map((p) => (p.price.toFixed(2)))}`;
-
+const ProductItems = (props) =>{
+    // const price = `$${props.price.toFixed(2)}`; 
+    // `$${ProductDummy.map((p) => (p.price.toFixed(2)))}`;
     // productlist에 담아서 변수로 가져오는 거랑, dummy파일 채로 가지고 오는 거 차이?
+    
     return (
-        <section>
-            <h2>좋아하는 상품을 구매하세요!</h2>
+        <li>
             <div>
-                {ProductDummy.map((p) => (
-                        <li>{p.title}
-                        {p.discription}
-                        {price}</li>
-                ))}
+                {/* <h3>{props.product.title}</h3>
+                <div>{props.prpduct.discription}</div>
+                <div>{props.product.price}</div> */}
             </div>
             <div>
-                <ProductItemForm/>
+                <ProductItemForm id={props.id}/>
             </div>
-        </section>
+        </li>
     )
 }
 
