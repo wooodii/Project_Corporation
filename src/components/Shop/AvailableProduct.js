@@ -4,7 +4,7 @@ import ProductItems from "./ProductItems";
 
 const AvailableProducts = () => {
     const ProductList = ProductDummy.map((p) => (
-        <ProductItems key={p.id} prodcut={p}/>));
+        <ProductItems key={p.id} product={p}/>));
 
     return (
         <>

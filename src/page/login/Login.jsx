@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { loginState, logoutState } from "../../Modules/loginSlice";
+import { addUserInfo } from "../../Modules/userInfoSlice";
 
 const Login = () => {
     // reducer
@@ -27,7 +28,7 @@ const Login = () => {
             const credential = GoogleAuthProvider.credentialFromResult(result);
             const token = credential.accessToken;
             const user = result.user;
-            dispatch(loginState(user)); 
+            dispatch(loginState(user));
             navigate('/mypage');
           })
           .catch((error) => {
@@ -51,7 +52,6 @@ const Login = () => {
                     console.log('success');
                     navigate('/mypage');
                     dispatch(loginState(result.user));
-                    // 로그아웃버튼으로 변경하기
         }catch(error){
             console.log(error);
             setLoginCheck('회원정보를 찾을 수 없습니다. 다시 로그인해주세요')

@@ -5,6 +5,7 @@ import loginReducer from '../Modules/loginSlice';
 import cartSlice from '../Modules/cartSlice';
 import uiSlice from '../Modules/uiSlice';
 import BoardSlice from '../Modules/boardSlice';
+import userInfoSlice from '../Modules/userInfoSlice';
 
 // configureStore 를 reducer 전달
 // 리덕스 상태 개체를 상태 슬라이스로 분할
@@ -14,7 +15,8 @@ export default configureStore({
     login : loginReducer,
     ui : uiSlice.reducer,
     cart : cartSlice.reducer,
-    board : BoardSlice.reducer 
+    board : BoardSlice.reducer,
+    userInfo : userInfoSlice.reducer
   },
   middleware: getDefaultMiddleware({
     serializableCheck: {
