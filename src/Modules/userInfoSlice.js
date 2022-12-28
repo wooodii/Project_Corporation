@@ -16,6 +16,7 @@ export const userInfoSlice = createSlice({
             }
             return state.concat(newUser);
         },
+        // board 좋아요 버튼의 값 확인
         addLikeBoard(state, action){
             const newAddLike = {
                 boardId : action.payload.boardId,
@@ -30,8 +31,6 @@ export const userInfoSlice = createSlice({
                 } : userInfo
             ))
         }
-
-
     }
 })
 

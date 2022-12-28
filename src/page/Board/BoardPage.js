@@ -3,21 +3,22 @@ import { useEffect, useState } from "react";
 import { Button, Card, Col, Container, FloatingLabel, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { addBoard, addLikeUser, deleteBoard, updateView } from "../../Modules/boardSlice";
+import { addLikeUser, deleteBoard, updateView } from "../../Modules/boardSlice";
 import { addCommnet } from "../../Modules/commnetSlice";
+import {addLikeBoard} from '../../Modules/userInfoSlice';
 
 const BoardPage = () => {
     const {id} = useParams();
-    console.log(id);
+    // console.log(id);
     const boardList = useSelector((state) => (state.board));
-    console.log(boardList);
+    // console.log(boardList);
     const board = boardList.find((board) => (board.boardId === Number(id)));
-    console.log(board);
+    // console.log(board);
     // const boardFind = useSelector((state) => (state.board.find((board) => (board.boardId == id))))
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(updateView(id))
+        dispatch(updateView(id));
     }, [])
 
     return (
@@ -34,7 +35,12 @@ const BoardPrint = ({board}) => {
     const navigate = useNavigate();
     const [commentText, setCommentText] = useState("");
     
-    const user = useSelector((state) => (state.currentUser));
+    // user로 댓글을 달 수 있게 수정, user ==  false이라면 코멘트 달 수  없게 수정
+    const user = useSelector((state) => state.login);
+    console.log(user);
+
+
+    const login = useSelector((state) => (state.login));
 
     const onAddCommnet = () => {
         dispatch(addCommnet({
@@ -46,8 +52,8 @@ const BoardPrint = ({board}) => {
     }
 
     // commnets 값 가져오기
-    const comments = useSelector((state) => state.comment);
-    const boardComments = comments.filter((commnets) => commnets.boardId == board.boardId);
+    const comments = useSelector((state) => state.comment); // console.log(comments); 
+    const boardComments = comments.filter((commnets) => (commnets.boardId == board.boardId));
 
     // 삭제
     const onDeleteBoard = (id) =>{
@@ -66,17 +72,17 @@ const BoardPrint = ({board}) => {
 
     // 좋아요
     const onAddLike = () => {
-        if(!user){
+        if(!login){
             return alert("로그인 후에 사용가능합니다.")
         }
 
         const boardlike = {
-        userEmail :user.email,
+        userEmail : user.email,
         boardId : board.boardId,
         title : board.title
         }
 
-        dispatch(addBoard(boardlike)); // addLikeBoard??
+         dispatch(addLikeBoard(boardlike));
 
         const userlike = {
             boardId : board.boardId,
@@ -84,9 +90,9 @@ const BoardPrint = ({board}) => {
         }
         dispatch(addLikeUser(userlike));
     }
-
+    
     return(
-        <Container>
+        <Container style={{marginTop : "3em"}}>
             <Row>
                 <Col>
                     {board.boardId}
@@ -94,29 +100,38 @@ const BoardPrint = ({board}) => {
                 <Col>
                     <h2>{board.title}</h2>
                 </Col>
-                <Col>
+                <Col xs={4}>
                     <Button onClick={() => {toModifyBoard(board)}}>수정</Button>
                     <Button onClick={() => {onDeleteBoard(board.boardId)}}>삭제</Button>
                     <Button onClick={() => {navigate(-1)}}>돌아가기</Button>
-                </Col>
+                </Col >
             </Row>
             <Row>
                 <Col>
                     {board.userEmail}
                 </Col>
             </Row>
-            <Row  className="my-4">
-                <Col><h4>{board.content}</h4></Col>
+            <Row>
+                <Col xs={1}><span>조회수 <br/> {board.view}</span></Col>
+                <Col xs={1}><span onClick={onAddLike}>좋아요 <br/> {board.like.length}</span></Col> 
+                
+            </Row>
+            <hr/>
+            <Row>
+                <Col style={{height : "60vh"}}><h4>{board.content}</h4></Col>
+            </Row>
+            <hr/>
+            <Row>
+                {login ? 
+                <CommentInput  
+                    commentText={commentText}
+                    setCommentText={setCommentText}
+                    onAddComment={onAddCommnet}/> : <p>로그인하시면 댓글 작성이 가능합니다.</p>}
             </Row>
             <Row>
-                <Col><span>조회수 {board.view}</span></Col>
-                <Col><span>좋아요 {board.like.length}</span></Col> 
-            </Row>
-            <Row>
-                {/** 코멘트 작성 칸 */}
-                {user ? 
-                <CommentInput /> : <p>로그인하시면 코멘트 작성 가능</p>}
-                {/** 보고 마저 작성하기 */}
+                {boardComments.length > 0 ? (
+                    boardComments.map((comment) => <CommentBox comment={comment}/>)
+                ) : (<p>코멘트가 없음 </p>)}
             </Row>
         </Container>
     )
@@ -126,7 +141,7 @@ function CommentBox({ comment }) {
     return (
       <Card>
         <Card.Body>
-          <Card.Title>{comment.userEmail}</Card.Title>
+          <Card.Title>{comment.commmentId}{comment.userEmail}</Card.Title>
           <Card.Text>{comment.text}</Card.Text>
         </Card.Body>
       </Card>

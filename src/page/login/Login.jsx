@@ -2,7 +2,6 @@ import  { browserSessionPersistence, getAuth, GoogleAuthProvider, setPersistence
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
 import { loginState, logoutState } from "../../Modules/loginSlice";
 import { addUserInfo } from "../../Modules/userInfoSlice";
 
@@ -11,7 +10,6 @@ const Login = () => {
     const dispatch = useDispatch();
     const user = useSelector((state) => (state.currentUser));
     
-    // db : const q = query(collection(db, "posts"), where("category", "==", "etc"));
     const [LoginEmail, setLoginEmail] = useState("");
     const [LoginPassword, setLoginPassword] = useState("");
     const [LoginCheck, setLoginCheck] = useState("");

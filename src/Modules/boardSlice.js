@@ -18,17 +18,20 @@ export const BoardSlice = createSlice({
         like : []
     }],    
     reducers : {
+        // 현재 게시물의 id를 찾아서 id를 제외하고 새로운 배열을 만듦
         deleteBoard(state, action) {
             const newPageList = state.filter(
                 (board) => (board.boardId !== action.payload))
             return newPageList;
         },
+        // 수정된 board값을 들고와서 값을 통채로 리스트에 바꿔 넣음
         modifyBoard(state, action){
             const modifyPage = state.map(
                 (board) => (
                 board.boardId == action.payload.boardId ? action.payload : board))
                 return modifyPage;
             },
+        // 새로운 board값을 받아와서 id값을 부여한 후에 추가
         addBoard(state, action){
             let boardId = 3;
             const newBoard = {
