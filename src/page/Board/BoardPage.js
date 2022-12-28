@@ -1,10 +1,10 @@
 // import { createAction } from "@reduxjs/toolkit";
 import { useEffect, useState } from "react";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, FloatingLabel, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { addBoard, addLikeUser, deleteBoard, updateView } from "../../Modules/boardSlice";
-import {addComment} from '../../Modules/commnetSlice';
+import { addCommnet } from "../../Modules/commnetSlice";
 
 const BoardPage = () => {
     const {id} = useParams();
@@ -37,7 +37,7 @@ const BoardPrint = ({board}) => {
     const user = useSelector((state) => (state.currentUser));
 
     const onAddCommnet = () => {
-        dispatch(addComment({
+        dispatch(addCommnet({
             boardId : board.boardId,
             userEmail : user.email,
             text : commentText
@@ -46,13 +46,13 @@ const BoardPrint = ({board}) => {
     }
 
     // commnets 값 가져오기
-    const comments = useSelector((state) => state.comments);
+    const comments = useSelector((state) => state.comment);
     const boardComments = comments.filter((commnets) => commnets.boardId == board.boardId);
 
     // 삭제
     const onDeleteBoard = (id) =>{
         dispatch(deleteBoard(id));
-        navigate('/board');
+        navigate('/board'); 
         console.log(deleteBoard(id));
         console.log(id);
     }
