@@ -13,19 +13,35 @@ import BoardWriteForm from './page/Board/BoardWriteForm';
 import NavBar from './components/Layout/Navbar';
 import ProdutPage from './components/Product/ProductPage';
 import ClientPage from './page/Board/ClientPage';
+import { useState } from 'react';
+import CartComp from './components/Cart/CartComp';
 
 function App() { 
+  const [cartIsShown, setCartIsShown] = useState(false);
+  const showCartHandler = ()   => {
+    setCartIsShown(true);
+  }
+
+  const hideCartHandler = () => {
+    setCartIsShown(false);
+  }
+
   return (
     <div className="App">
-      <NavBar/> 
+        {/**cart의 상위 페이지 */}
+      <NavBar onshowCart={showCartHandler}/> 
+        
       <Routes>
+        {/** cart컴포넌트를 조건부로 렌더링 */}
+        {cartIsShown && <CartComp onClose={hideCartHandler}/>} 
+        
         <Route path='/' element={<Home/>}></Route>
         <Route path='/login' element={<Login/>}></Route>
         <Route path='/register' element={<Register/>}></Route>
         <Route path='/mypage' element={<MyPage/>}></Route>
         
+       
         <Route path='/cart' element={<Cart/>}></Route>
-        
         <Route path='/guest' element={<Guest/> }></Route>
 
         <Route path='/client' element={<ClientPage/>}></Route>

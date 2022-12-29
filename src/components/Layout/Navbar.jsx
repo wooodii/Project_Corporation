@@ -14,8 +14,9 @@ const NavBar = (props) => {
   const dispatch = useDispatch();
 
   // 세션키로 가져오는 값이 있는지 확인해 회원이름변경 > 수정
-  const sessionKey = `firebase:authUser:${apiKeyNum}:[login]`
+  const sessionKey = `firebase:authUser:${apiKeyNum}:[DEFAULT]`
   const isSession = sessionStorage.getItem(sessionKey) ? true : false;
+  console.log(sessionKey); 
   console.log(isSession); 
 
   const [loginName, setLoginName] = useState();
@@ -25,12 +26,7 @@ const NavBar = (props) => {
     return function (dispatch) {
       auth.onAuthStateChanged((user) => {
         if(user) {
-          dispatch(loginState({
-            user : user.uid,
-            name : user.displayName,
-            email : user.email,
-            password : user.password
-          }))
+          dispatch(loginState.userInfo())
         }else {
           dispatch(logoutState());
         }
@@ -41,7 +37,7 @@ const NavBar = (props) => {
   useEffect(() => {
     if(sessionKey && isSession) {
         console.log(JSON.parse(sessionStorage.getItem(sessionKey)).uid);
-        setLoginName(dispatch(loginState.UserInfo));
+        setLoginName(dispatch(loginState.userInfo));
         loginCheck();
       }else{
         setLoginName("회원정보없음");
@@ -62,12 +58,13 @@ const NavBar = (props) => {
   
             <Navbar.Collapse className="justify-content-end">
               <Navbar.Text>
+                <div>
                 {currentUser ? (<span>{currentUser.email}</span>) : <span>회원정보없음</span>}
-                 <br/>
+                </div>
                 <button onClick={() => {navigate('/login'); dispatch(logoutState()) }}>로그아웃 </button>
                 <button onClick={() => navigate('/register')}>정보수정</button>
                 <button onClick={() => navigate('/client')}>고객센터</button>
-                <CartBtn />
+                <CartBtn onClick={props.onshowCart}/>
               </Navbar.Text> 
             </Navbar.Collapse>
           </Container>
@@ -88,7 +85,7 @@ const NavBar = (props) => {
                 <button onClick={() => navigate('/login')}>로그인</button> 
                 <button onClick={() => navigate('/register')}>회원가입</button>
                 <button onClick={() => navigate('/client')}>고객센터</button>
-                <CartBtn />
+                <CartBtn onClick={props.onshowCart}/>
               </Navbar.Text> 
             </Navbar.Collapse>
           </Container>

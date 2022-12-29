@@ -5,11 +5,12 @@ import { doc, setDoc } from "firebase/firestore";
 import {db} from '../../database/firebase';
 import styles from "../../page/login/Register.module.css";
 import { Row } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 
 const Register = () => {
     const navigate = useNavigate();
     const auth = getAuth();
-    
+
     //회원가입
     const [email, setEmail] = useState(""); 
     const [password, setPassword] = useState("");
@@ -75,11 +76,12 @@ const Register = () => {
                 <Row>
                     <label htmlFor="">
                         <span>비밀번호</span>
-                        <input valu={password} onChange={(e) => {setPassword(e.target.value)}} placeholder="password" />
+                        <input value={password} onChange={(e) => {setPassword(e.target.value)}} placeholder="password" />
                     </label>
                     <p style={{color : "red"}}>{pwdError} </p>
                 </Row>
                 <button type="submit">회원가입</button>
+
             </form>
         </>
     )

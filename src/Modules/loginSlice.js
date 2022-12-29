@@ -5,17 +5,18 @@ export const loginSlice = createSlice({
     name : 'login',
     initialState : [{
         isLoggedIn : false, 
-        currentUser : JSON.parse(sessionStorage.getItem("currentUser")) // (key,value)
+        currentUser : JSON.parse(sessionStorage.getItem("currentUser")), // (key,value)
+        userInfo : []
     }],
     reducers : {
         loginState : (state, action) => {
             state.isLoggedIn = !state.isLoggedIn // 로그인 상태 변경 
-            state.currentUser = action.payload
+            state.userInfo = action.payload // 사용자 정보 공간
             sessionStorage.setItem("currentUser", JSON.stringify(action.payload));
         },
         logoutState : (state, action) => {
             state.isLoggedIn = !state.isLoggedIn
-            state.currentUser = action.payload
+            state.userInfo = action.payload
             sessionStorage.removeItem("currentUser"); // 특정 키값 삭제
             // clear는 전체 데이터 삭제
         }

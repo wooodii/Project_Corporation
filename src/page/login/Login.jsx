@@ -1,4 +1,5 @@
 import  { browserSessionPersistence, getAuth, GoogleAuthProvider, setPersistence, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { getDocs } from "firebase/firestore";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +10,7 @@ const Login = () => {
     // reducer
     const dispatch = useDispatch();
     const user = useSelector((state) => (state.currentUser));
+    const InputUserInfo = useSelector((state) => (state.login.userInfo))
     
     const [LoginEmail, setLoginEmail] = useState("");
     const [LoginPassword, setLoginPassword] = useState("");
@@ -49,7 +51,10 @@ const Login = () => {
                     console.log(result.user);
                     console.log('success');
                     navigate('/mypage');
-                    dispatch(loginState(result.user));
+                    dispatch(loginState(result.user)); // result.user의 정보는 loginslice의 14번?
+                    // 로그인 시 정보를 들고와서 loginSlice의 userInfo 에 저장
+                    const data = await getDocs();
+                    dispatch(InputUserInfo(data));
         }catch(error){
             console.log(error);
             setLoginCheck('회원정보를 찾을 수 없습니다. 다시 로그인해주세요')
