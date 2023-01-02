@@ -15,6 +15,7 @@ import ProdutPage from './components/Product/ProductPage';
 import ClientPage from './page/Board/ClientPage';
 import { useState } from 'react';
 import CartComp from './components/Cart/CartComp';
+import ThreeApp from './shaders/ThreeApp';
 
 function App() { 
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -34,6 +35,7 @@ function App() {
       <Routes>
         {/** cart컴포넌트를 조건부로 렌더링 */}
         {cartIsShown && <CartComp onClose={hideCartHandler}/>} 
+        <Route path='/three' element={<ThreeApp/>}></Route>
         
         <Route path='/' element={<Home/>}></Route>
         <Route path='/login' element={<Login/>}></Route>
