@@ -11,11 +11,13 @@ import Board from './page/Board/Board';
 import BoardPage from './page/Board/BoardPage';
 import BoardWriteForm from './page/Board/BoardWriteForm';
 import NavBar from './components/Layout/Navbar';
-import ProdutPage from './components/Product/ProductPage';
+import ProductPage from './components/Product/ProductPage';
 import ClientPage from './page/Board/ClientPage';
 import { useState } from 'react';
 import CartComp from './components/Cart/CartComp';
 import ThreeApp from './shaders/ThreeApp';
+import Three02 from './shaders/Three02';
+import Three03 from './shaders/three03';
 
 function App() { 
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -33,9 +35,12 @@ function App() {
       <NavBar onshowCart={showCartHandler}/> 
         
       <Routes>
+        <Route path='/three' element={<ThreeApp/>}></Route>
+        <Route path='/02' element={<Three03/>}></Route>
+
         {/** cart컴포넌트를 조건부로 렌더링 */}
         {cartIsShown && <CartComp onClose={hideCartHandler}/>} 
-        <Route path='/three' element={<ThreeApp/>}></Route>
+        
         
         <Route path='/' element={<Home/>}></Route>
         <Route path='/login' element={<Login/>}></Route>
@@ -51,7 +56,7 @@ function App() {
         <Route path='/board/:id' element={<BoardPage/>}></Route>
         <Route path='/board/writeform' element={<BoardWriteForm/>}></Route>
 
-        <Route path='/product' element={<ProdutPage/>}></Route>
+        <Route path='/product' element={<ProductPage/>}></Route>
       </Routes>
     </div>
   );
