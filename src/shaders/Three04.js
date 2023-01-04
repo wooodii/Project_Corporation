@@ -1,7 +1,14 @@
 import * as THREE from 'three';
 console.log(THREE);
 
-const Three03 = () => {
+// 물체에 그림자 적용
+// castShadow : 그림자를 표현할 도형 
+// receiveShadow : 그림자를 받을 도형
+// 물체, 바닥, 빛에 그림자설정 하기 
+// 그림자에 블러 효과 주기 (directionalLight.shadow.radius = 9 )
+
+const Three04 = () => {
+
     const scene = new THREE.Scene();
     // scene.background = new THREE.Color(0x004fff);
 
@@ -28,9 +35,9 @@ const Three03 = () => {
 
     // 도형추가
     // lambert phong :빛을 기준으로 표현 phong 은 반짝이는 금속 재질 표현에 유리
-    const geometry01 = new THREE.SphereGeometry(0.5, 32, 16); // 박스지오메트리
+    const geometry01 = new THREE.IcosahedronGeometry(0.5, 32, 16); // 박스지오메트리
     const material01 = new THREE.MeshDepthMaterial({
-        color : 0xeeeeee
+        color : 0xeeeeee // 여기에 코드를 입력하면 되야 하는 거 아닌가? 
     });
     
     // object에 색이 입혀지지 않는 이유? 
@@ -39,65 +46,72 @@ const Three03 = () => {
     obj01.rotation.x = 0.2;
     obj01.rotation.z = 1.5;
     scene.add(obj01);
+    // 그림자 추가
+    obj01.castShadow = true; 
 
     // 바닥 추가 
     const planeGeometry = new THREE.PlaneGeometry(30, 30, 1, 1);
-    
     const planeMaterial = new THREE.MeshStandardMaterial({
-        color : 0xeeeeee
     });
+
     const plane = new THREE.Mesh(planeGeometry, planeMaterial);
     plane.rotation.x = -0.5* Math.PI;
     plane.position.y = -0.5;
     scene.add(plane);
+    plane.receiveShadow = true; // 빛을 받아줄 그림자 
 
     // 빛
     // ambientLight : 빛
     const ambientLight = new THREE.AmbientLight(0xFFA500, 0.8); // color, intensity(강도) 
     scene.add(ambientLight);
-
+    // ambientLight.castShaow = true; // 그림자 x
+    
     // 특정 방향으로 빛 방출 like 해
     const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
-    directionalLight.position.set(-1,1,1); // -1로 설정하면 좌측 상단에서 빛을 쏨 
+    directionalLight.position.set(-0.5 ,1.5,0.5); // z축을 높이면 후면에서 빛을 쏘는 것처럼 작용 
     const dllHelper = new THREE.DirectionalLightHelper(directionalLight, 0.2, 0xffffff); // 빛의 위치와 방향 설정 
     scene.add(dllHelper);
     scene.add(directionalLight);
 
+    //적용안됨ㅠ
+    directionalLight.castShadow = true; 
+    directionalLight.shadow.mapSize.width = 1024; // 그림자 선명도 설정 (수치 증가할수록 선명)
+
     // 하늘과 바닥 색 중간 
-    const hemisphereLight = new THREE.HemisphereLight(0x0000ff, 0xff0000, 1); // object skycolor, groundcolor, intensity
+    // const hemisphereLight = new THREE.HemisphereLight(0x0000ff, 0xff0000, 1); // object skycolor, groundcolor, intensity
     // scene.add (hemisphereLight)
 
     // pointLight
     // 빛
     const pointLight = new THREE.PointLight(0xffffff, 1);
-    pointLight.position.set(0, 2, 12);
-    //scene.add(pointLight);
-    pointLight.position.set(-2, 0.5, 0.5);
+    scene.add(pointLight);
+    pointLight.position.set(1, 1, 1);
     const plHelper = new THREE.PointLightHelper(pointLight, 0.1); // 전구
-    //scene.add(plHelper);
+    scene.add(plHelper);
+    pointLight.castShadow = true; // 그림자 0 
 
-    const pointLight1 = new THREE.PointLight(0xffffff, 1);
-    pointLight.position.set(0, 2, 12);
-    // scene.add(pointLight1);
-    pointLight.position.set(-2, 0.5, 0.5);
-    const plHelper1 = new THREE.PointLightHelper(pointLight, 0.1); // 전구
-    //scene.add(plHelper1);
+    // const pointLight1 = new THREE.PointLight(0xffffff, 1);
+    // pointLight.position.set(0, 2, 12);
+    // // scene.add(pointLight1);
+    // pointLight.position.set(-2, 0.5, 0.5);
+    // const plHelper1 = new THREE.PointLightHelper(pointLight, 0.1); // 전구
+    // //scene.add(plHelper1);
 
-    const pointLight2 = new THREE.PointLight(0xffffff, 1);
-    pointLight.position.set(0, 2, 12);
-    //scene.add(pointLight2);
-    pointLight.position.set(-2, 0.5, 0.5);
-    const plHelper2 = new THREE.PointLightHelper(pointLight, 0.1); // 전구
-    //scene.add(plHelper2);
+    // const pointLight2 = new THREE.PointLight(0xffffff, 1);
+    // pointLight.position.set(0, 2, 12);
+    // //scene.add(pointLight2);
+    // pointLight.position.set(-2, 0.5, 0.5);
+    // const plHelper2 = new THREE.PointLightHelper(pointLight, 0.1); // 전구
+    // //scene.add(plHelper2);
 
-    const rectLight = new THREE.RectAreaLight(0xffffff, 2, 1, 0.5);
-    // scene.add(rectLight);
-    rectLight.position.set(0.5, 0.5, 0.5);
-    rectLight.lookAt(0, 0, 0); 
+    // const rectLight = new THREE.RectAreaLight(0xffffff, 2, 1, 0.5);
+    // // scene.add(rectLight);
+    // rectLight.position.set(0.5, 0.5, 0.5);
+    // rectLight.lookAt(0, 0, 0); 
 
-    const spotLight = new THREE.SpotLight(0xffffff, 0.5);
-    scene.add(spotLight); // 특정 위치에 세게 빛 쏘기 (명확한 위치 표현)
-
+    // const spotLight = new THREE.SpotLight(0xffffff, 0.5);
+    // scene.add(spotLight); // 특정 위치에 세게 빛 쏘기 (명확한 위치 표현)
+    // spotLight.castShadow
     // lambert phong :빛을 기준으로 표현 phong 은 반짝이는 금속 재질 표현에 유리
     // const geometry02 = new THREE.BoxGeometry(0.5, 0.7, 0.5); 
     // const material02 = new THREE.MeshStandardMaterial({
@@ -137,8 +151,8 @@ const Three03 = () => {
 
     function render(time){
         time *= 0.0005;
-        obj01.rotation.x = time;
-        obj01.rotation.y = time;
+        // obj01.rotation.x = time;
+        // obj01.rotation.y = time;
         renderer.render(scene, camera);
         requestAnimationFrame(render);
     }
@@ -152,12 +166,11 @@ const Three03 = () => {
         renderer.setSize(window.innerWidth, window.innerHeight); 
     }
     window.addEventListener('resize', onWindowResize);
-
     return (
         <>
             <canvas></canvas>
-        </> 
+        </>
     );
 }
  
-export default Three03;
+export default Three04;

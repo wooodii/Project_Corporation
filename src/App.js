@@ -18,6 +18,8 @@ import CartComp from './components/Cart/CartComp';
 import ThreeApp from './shaders/ThreeApp';
 import Three02 from './shaders/Three02';
 import Three03 from './shaders/three03';
+import Three04 from './shaders/Three04';
+import Three05 from './shaders/Three05';
 
 function App() { 
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -36,7 +38,7 @@ function App() {
         
       <Routes>
         <Route path='/three' element={<ThreeApp/>}></Route>
-        <Route path='/02' element={<Three03/>}></Route>
+        <Route path='/02' element={<Three05/>}></Route>
 
         {/** cart컴포넌트를 조건부로 렌더링 */}
         {cartIsShown && <CartComp onClose={hideCartHandler}/>} 
