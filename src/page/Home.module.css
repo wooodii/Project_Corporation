@@ -1,0 +1,63 @@
+.app{
+    list-style: none;
+    text-decoration: none;
+    border-collapse: collapse;
+    margin : 0px;
+    padding : 0px;
+    color : #000;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.header{
+    background-image: url('../asset/토끼.jpg');
+    width: 100%;
+    height: 718px;
+    object-fit: cover;
+}
+
+.alink{
+    text-decoration: none;
+    color : #000;
+}
+
+.intro_text{
+    position : absolute;
+    top : 400px;
+    left : 600px;
+}
+
+h1 {
+    font-size : 40px;
+}
+.intro_text > h1,
+.intro_text > h4{
+    color : black;
+    font-weight: bold;
+    text-align: center;
+}
+
+.contents{
+    font-size: 20px;
+}
+
+.amount{
+    text-align: center;    
+    display: flex;
+    margin : 0 auto;
+}
+
+.amount > li {
+    flex : 1;
+    list-style: none;
+    background: bisque;
+    height : 132px;
+    width : 220px;
+}
+
+.amount > li > div{
+    border-right : 2px solid gray;
+    text-align : center;
+    margin-top : 30px;
+    color : black;
+    font-size: 1.2em;
+}

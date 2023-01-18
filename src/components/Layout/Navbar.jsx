@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { auth, apiKeyNum } from "../../database/firebase";
 import { loginState, logoutState } from "../../Modules/loginSlice";
-import CartBtn from "../Cart/CartBtn";
+// import CartBtn from "../Cart/CartBtn";
 
 const NavBar = (props) => {
   const currentUser = useSelector((state) => (state.login.currentUser));
@@ -45,55 +45,61 @@ const NavBar = (props) => {
       }, [setLoginName]);
 
   return (
-    <>
+    <div style={{marginTop : "1em", marginBottom : "1em"}}>
       {
         currentUser ? (
           <Navbar>
           <Container>
             <Nav>
-              <Nav.Link href="/product">제품보기</Nav.Link> 
-              <Nav.Link href="/recommendgift">선물추천</Nav.Link>
-              <Nav.Link href="/introstore">매장보기</Nav.Link>
+              <Nav.Link href="/product"> ABOUT</Nav.Link> 
+              <Nav.Link href="/recommendgift"> SERVICE </Nav.Link>
+              <Nav.Link href="/introstore">CONTACT</Nav.Link>
             </Nav>
   
             <Navbar.Collapse className="justify-content-end">
-              <Navbar.Text>
-                <div>
-                {currentUser ? (<span>{currentUser.email}</span>) : <span>회원정보없음</span>}
-                </div>
-                <button onClick={() => {navigate('/login'); dispatch(logoutState()) }}>로그아웃 </button>
-                <button onClick={() => navigate('/register')}>정보수정</button>
-                <button onClick={() => navigate('/client')}>고객센터</button>
-                <CartBtn onClick={props.onshowCart}/>
-              </Navbar.Text> 
+
+            
+              <Nav style={{display : "flex"}}>
+                <Nav.Link style={{marginRight : "1em"}} href='/login' onClick={() => (dispatch(logoutState()))}>
+                    로그아웃
+                  </Nav.Link> 
+                <Nav.Link style={{marginRight : "1em"}} href='/register'>정보수정</Nav.Link>
+                <Nav.Link style={{marginRight : "1em"}} href='/client'>고객센터</Nav.Link>
+                {/* <CartBtn onClick={props.onshowCart}/> */}
+              </Nav> 
             </Navbar.Collapse>
+          
           </Container>
         </Navbar>
         ) : (
           <Navbar>
           <Container>
             <Nav>
-              <Nav.Link href="/product">제품보기</Nav.Link> 
-              <Nav.Link href="/recommendgift">선물추천</Nav.Link>
-              <Nav.Link href="/introstore">매장보기</Nav.Link>
+              <Nav.Link href="/product">ABOUT</Nav.Link> 
+              <Nav.Link href="/recommendgift">SERVICE</Nav.Link>
+              <Nav.Link href="/introstore">CONTACT</Nav.Link>
             </Nav>
-  
             <Navbar.Collapse className="justify-content-end">
-              <Navbar.Text>
-                {currentUser ? (<span>{currentUser.email}</span>) : <span>회원정보없음</span>}
-                 <br/>
-                <button onClick={() => navigate('/login')}>로그인</button> 
-                <button onClick={() => navigate('/register')}>회원가입</button>
-                <button onClick={() => navigate('/client')}>고객센터</button>
-                <CartBtn onClick={props.onshowCart}/>
-              </Navbar.Text> 
+              
+
+              <Nav style={{display : "flex"}}>
+
+                <Nav.Link style={{marginRight : "1em"}} href='/login'>
+                {currentUser ? 
+                  (<span>{currentUser.email}</span>) : 
+                  <span>로그인</span>}
+                  </Nav.Link> 
+                <Nav.Link style={{marginRight : "1em"}} href='/register'>회원가입</Nav.Link>
+                <Nav.Link style={{marginRight : "1em"}} href='/client'>고객센터</Nav.Link>
+                {/* <CartBtn onClick={props.onshowCart}/> */}
+              </Nav> 
             </Navbar.Collapse>
           </Container>
         </Navbar>
         )
       }
 
-    </>
+    </div>
   );
 };
 
