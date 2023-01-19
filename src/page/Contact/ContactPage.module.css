@@ -1,0 +1,51 @@
+.wrap{
+    display : flex;
+}
+
+.wrap > li {
+    list-style: none;
+}
+
+.contents1{
+    width :50%;
+    height : 100%;
+    text-align: left;
+}
+
+.cnt_title1 {
+    font-size: 5em;
+    margin-top : 1.5em;
+}
+
+.tower{
+    margin-top : 0.3em;
+    font-size : 20px;
+}
+
+.name{
+    font-size : 20px;
+    margin-bottom : 2em;
+}
+
+.info{
+    display : flex;
+    flex :1;
+    font-size : 17px;
+}
+
+.info > li {
+    display: flex;
+    list-style : none;
+    margin-right : 3em;
+}
+
+.info > li > span {
+    margin-left : 0.5em;
+}
+
+.backhome{
+    display :inline-block;
+    margin-top : 7em;
+    font-size : 30px;
+    border-bottom : 2px solid black;
+}

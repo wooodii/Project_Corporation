@@ -1,0 +1,24 @@
+.wrap{
+    display: flex;
+    background-color: #eee;
+    padding : 2em;
+}
+
+.company{
+    flex: 4;
+    text-align: center;
+}
+
+.info{
+    flex : 8;
+    text-align: left;
+    color :gray;
+    margin-left : 2em;
+}
+
+.backhome{
+    margin-top: 6em;
+    font-size: 30px;
+    border-bottom : 2px solid black;
+}
+

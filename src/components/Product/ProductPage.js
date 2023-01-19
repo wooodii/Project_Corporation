@@ -1,9 +1,6 @@
-import KindList from "./KindList";
-
 const ProdutPage = () => {
     return (
         <>
-            <KindList/>
              <hr/>
              제품소개 사진 및 영상 (제품군)
 

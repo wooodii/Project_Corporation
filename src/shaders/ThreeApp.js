@@ -28,6 +28,7 @@ const ThreeApp = () => {
     const material01 = new THREE.MeshStandardMaterial({
         color : 0xFF7F00
     });
+
     const obj01 = new THREE.Mesh(geometry01, material01);
     obj01.position.x = -1;
     scene.add(obj01);
@@ -45,7 +46,7 @@ const ThreeApp = () => {
 
     material01.wireframe = true;
     
-     const obj02 = new THREE.Mesh(geometry01, material02);
+    const obj02 = new THREE.Mesh(geometry01, material02);
     scene.add(obj02);
     
     const geometry03 = new THREE.IcosahedronGeometry(0.4, 0); // 박스지오메트리
@@ -74,9 +75,7 @@ const ThreeApp = () => {
         renderer.render(scene, camera);
         requestAnimationFrame(render);
     }
-
         requestAnimationFrame(render);
-
     
     // 반응형
     function onWindowResize() {
@@ -87,9 +86,7 @@ const ThreeApp = () => {
     window.addEventListener('resize', onWindowResize);
 
     return (
-        <>
             <canvas></canvas>
-        </> 
     );
 }
  

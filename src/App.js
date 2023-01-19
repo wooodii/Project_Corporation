@@ -20,6 +20,7 @@ import Three02 from './shaders/Three02';
 import Three03 from './shaders/three03';
 import Three04 from './shaders/Three04';
 import Three05 from './shaders/Three05';
+import ContactPage from './page/Contact/ContactPage';
 
 function App() { 
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -43,13 +44,11 @@ function App() {
         {/** cart컴포넌트를 조건부로 렌더링 */}
         {cartIsShown && <CartComp onClose={hideCartHandler}/>} 
         
-        
         <Route path='/' element={<Home/>}></Route>
         <Route path='/login' element={<Login/>}></Route>
         <Route path='/register' element={<Register/>}></Route>
         <Route path='/mypage' element={<MyPage/>}></Route>
-        
-       
+        <Route path='/contact' element={<ContactPage/>}></Route>
         <Route path='/cart' element={<Cart/>}></Route>
         <Route path='/guest' element={<Guest/> }></Route>
 
@@ -57,8 +56,6 @@ function App() {
         <Route path='/board' element={<Board/>}></Route>
         <Route path='/board/:id' element={<BoardPage/>}></Route>
         <Route path='/board/writeform' element={<BoardWriteForm/>}></Route>
-
-        <Route path='/product' element={<ProductPage/>}></Route>
       </Routes>
     </div>
   );
