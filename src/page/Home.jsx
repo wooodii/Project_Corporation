@@ -6,18 +6,19 @@ import Carousel from 'react-bootstrap/Carousel';
 import Footer from './Footer';
 import { useNavigate } from 'react-router-dom';
 import ThreeApp from '../shaders/ThreeApp';
+import { useEffect, useRef, useState } from 'react';
+import CountUp from "react-countup";
 
 const Home = () => {
     const navigate = useNavigate();
-    const settings = {
-        dots: false,
-        infinite: true,
-        speed: 0,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 2000,
-      };
+     const ref = useRef(null);
+     const [ctx, setCtx] = useState();
+
+     useEffect(() => {
+         const canvas = ref.current
+         const context = canvas.getContext('2d');
+         setCtx(context)
+     }, [])
 
     const homeimg = [
         {id : 1, img : "home01.webp", des1 : "한샘 유로5 프레임우드"},
@@ -25,18 +26,16 @@ const Home = () => {
         {id : 3, img : "home03.webp", des1 : "한샘 유로5 매니쉬모던"},
     ]
 
-
+    
     return (
         <div className={style.app}>
             <div className={style.intro_bg}>
                 <div className={style.header}>
                     <Navbar/>
                 </div>
-
-                <div style={{display : "absolute", top :0}}>
-                    <ThreeApp/>
+                <div>
+                <canvas ref={ref}  width="150" height="150"></canvas>
                 </div>
-
                 <div className={style.intro_text}>
                     <h1> 혼자 하는 고민은 시간만 늦출 뿐 </h1>
                     <h4 className={style.contents}> 
@@ -54,7 +53,9 @@ const Home = () => {
                             </span> 
                             <br/>
                            <span className={style.subtitle2}>
-                             140건 
+                             <CountUp duration={3} 
+                             className="counter" end={140}/>
+                             건 
                             </span> 
                         </p>
                     </div>
@@ -63,7 +64,11 @@ const Home = () => {
                 <div>
                     <p> 
                        <span className={style.subtitle1}> 리모델링 상품  </span><br/> 
-                        <span className={style.subtitle2}> 930개 </span>
+                        <span className={style.subtitle2}> 
+                        <CountUp duration={3} 
+                             className="counter" end={930}/>
+                             개
+                        </span>
                     </p>
                 </div>
                 </li>
@@ -71,7 +76,10 @@ const Home = () => {
                 <div>
                         <p>
                             <span className={style.subtitle1}> 가구</span><br/>
-                            <span className={style.subtitle2}> 800개</span> 
+                            <span className={style.subtitle2}> 
+                            <CountUp duration={3} 
+                             className="counter" end={800}/>
+                             여개</span> 
                         </p>
                 </div>
                 </li>
@@ -79,7 +87,10 @@ const Home = () => {
                 <div>
                         <p>
                             <span className={style.subtitle1}> 홈케어</span> <br/>
-                            <span className={style.subtitle2}> 400건</span>                       
+                            <span className={style.subtitle2}> 
+                            <CountUp duration={3} 
+                             className="counter" end={400}/>
+                             건 </span>                       
                         </p>
                 </div>
                 </li>
@@ -165,21 +176,24 @@ const Home = () => {
 
             <div className={style.main_text2}>
             </div>
+
             <div className={style.main_text3}>
-                <ul>
-                    <li>
-                        <div><h1>CONTACT</h1></div>
+                    <li className={style.main_text3_bg}>
                         <div>
+                            <h1 style={{marginTop : "1.7em"}}>CONTACT</h1>
+                            <p>
                             우리에게 파트너십을 신청하거나, 고객이 되어주세요
+                            </p>
+                            <button onClick={() => (
+                                navigate('/contact')
+                            )} className={style.context_btn}>
+                                더 알아보기
+                            </button>
                         </div>
-                        <button onClick={() => (
-                            navigate('/contact')
-                        )} className={style.context_btn}>더 알아보기</button>
+                        <div style={{backgroundColor : "gray", opacity : "90%"}}>
+
+                        </div>
                     </li>
-                    <li>
-                        
-                    </li>
-                </ul>
             </div>
             <Footer/>
         </div>

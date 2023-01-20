@@ -1,5 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
 .wrap{
     display : flex;
+    background-image: url('../../asset/contactbackground.jpg');
+    width : 100%;
+    background-size: cover;
+    padding-bottom: 9em;
 }
 
 .wrap > li {
@@ -10,37 +16,44 @@
     width :50%;
     height : 100%;
     text-align: left;
+    margin-left : 6em;
 }
 
 .cnt_title1 {
-    font-size: 5em;
+    font-size: 8em;
     margin-top : 1.5em;
+    font-weight: 400;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 .tower{
     margin-top : 0.3em;
-    font-size : 20px;
+    font-size : 25px;
 }
 
 .name{
-    font-size : 20px;
-    margin-bottom : 2em;
+    font-size : 25px;
+    margin-bottom : 3em;
 }
 
 .info{
     display : flex;
     flex :1;
-    font-size : 17px;
+    font-size : 25px;
 }
 
 .info > li {
     display: flex;
     list-style : none;
-    margin-right : 3em;
+    margin-right : 1em;
 }
 
 .info > li > span {
     margin-left : 0.5em;
+}
+
+li > .icons{
+    margin-top : -0.2em;
 }
 
 .backhome{
@@ -48,4 +61,87 @@
     margin-top : 7em;
     font-size : 30px;
     border-bottom : 2px solid black;
+}
+
+.backhome:hover{
+    cursor: pointer;
+    transition :all 0.3s ease-in-out;
+    transform : translateX( 50px );
+}
+
+
+.content2{
+    width : 50%;
+    height : 100%;
+    margin-top : 10em;
+}
+
+.content2 > ul{
+    border : 2px solid gray;
+    display : flex;
+    margin : 0em 6em 2em 0;
+    height : 6em;
+    padding : 0.8em;
+}
+
+.content2 > ul > span {
+    list-style: none;
+    text-align: center;
+    font-size : 25px;
+    width : 160px;
+    border-right : 1px solid gray;
+}
+
+.content2 > ul > li {
+    list-style: none;
+}
+
+.content2 > ul > li:not(:last-child) {
+    margin-right: 1em;
+}
+
+.content2 > ul > li:not(:first-child) {
+    border-left : 1px solid black;
+}
+
+.order{
+    height: 14em;
+}
+
+.inputbox{
+    font-size: 20px;
+    display: block;
+}
+
+.contact_btn{
+    display : inline-block;
+    font-size : 30px;
+    border-bottom : 2px solid black;
+    margin-top : 2em;
+}
+
+
+.contact_btn:hover{
+    transition :all 0.3s ease-in-out;
+    transform : scale(1.2);
+    cursor: pointer;
+    border-bottom: 2px solid gray;
+}
+
+input[type=checkbox]{
+    transform : scale(1.8);
+    margin-right : 0.5em;
+}
+
+
+.input_contact{
+    border: none; 
+    background-color: transparent;
+    width : 100%;
+    font-size : 28px;
+    margin-left : 0.4em;
+}
+
+.input_contact:focus{
+    outline : none;
 }

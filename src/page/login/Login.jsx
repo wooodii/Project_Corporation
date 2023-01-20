@@ -4,7 +4,9 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginState, logoutState } from "../../Modules/loginSlice";
+
 import { addUserInfo } from "../../Modules/userInfoSlice";
+import style from './Login.module.css';
 
 const Login = () => {
     // reducer
@@ -74,18 +76,47 @@ const Login = () => {
     }
 
     return (
-        <>
-            <input type="email" placeholder="Email" onChange={(e) => {
-                setLoginEmail(e.target.value); 
-            }}/> <br/>
-            <input placeholder="Password" onChange={(e) => {
-                setLoginPassword(e.target.value); 
-            }}/> <br/><br/> 
-            <p style={{fontSize : "0.8rem", color : "red"}}>{LoginCheck} </p>
-            <button onClick={signin}>로그인</button>
-            <button onClick={googleLogin}>구글계정 로그인</button>
-            <button onClick={signout}>로그아웃</button> <br/>
-        </> 
+
+        <ul className={style.wrap}>
+            <li className={style.main1}>
+                <div>
+                    공간을 만드는 <br/> HANSAM
+                </div>
+                <p>
+                    테크 선택부터 시공까지, 
+                    한샘이 도와드립니다 <br/>
+                    다양한 서비스는 물론, 할인 혜택까지 누리세요.
+                </p>
+            </li>
+
+            <li className={style.main2}>
+                
+                <div className={style.login_box}>
+                <div style={{fontSize : "2em"}}>
+                로그인
+                </div>
+                <br/>
+
+                <input type="email" placeholder="이메일"
+                 onChange={(e) => {setLoginEmail(e.target.value); 
+                 }}/> 
+
+                <input type="password" placeholder="비밀번호" 
+                onChange={(e) => { setLoginPassword(e.target.value); 
+                }}/>
+                <p style={{fontSize : "0.8rem", color : "red"}}>{LoginCheck} </p>
+
+                <p>비밀번호를 잊어버리셨나요?</p>
+
+                <button className={style.login_btn} onClick={signin}>로그인</button>
+                <button className={style.google_btn} onClick={googleLogin}>구글계정 로그인</button>
+
+                </div>
+                {/* <button onClick={signout}>로그아웃</button> <br/> */}
+            </li>
+        
+        </ul>
+
     );
 }
 

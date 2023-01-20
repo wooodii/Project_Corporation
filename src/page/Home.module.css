@@ -74,6 +74,7 @@ h1 {
 .subtitle2{
     font-size : 1.4em;
     font-weight: bold;
+    animation : countup 3s ease-in;
 }
 
 .main_text0{
@@ -174,20 +175,52 @@ h1 {
     background-color: #F28705;
 }
 
-.main_text3 > ul {
+.main_text3 > li {
+    text-align: center;
+    list-style : none;
     display : flex;
-    list-style: none;
-    background-color: #eee;
-    padding : 3em;
+    flex : 1;
 }
 
-.main_text3 > ul > li {
-    flex : 1;
-    text-align: center;
-}
 
 .context_btn{
     margin-top: 1em;
     width : 14em;
     height : 2.5em;
+    border : 1px solid black;
+}
+
+.context_btn:hover{
+    color : white;
+    background-color : black;
+}
+
+.main_text3_bg{
+    background-image: url('../asset/marble.jpg');
+    object-fit: cover;
+    width : 100%;
+    height : 300px;
+}
+
+.main_text3_bg > div{
+    width : 50%;
+    height : 100%;
+}
+
+
+
+@keyframes countup{
+  0% {
+    opacity: 0;
+    transform: translateY(10%);
+ 
+  }
+  30% {
+    opacity: 0.3;
+    transform: translateY(6%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

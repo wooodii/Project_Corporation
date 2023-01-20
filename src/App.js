@@ -21,6 +21,7 @@ import Three03 from './shaders/three03';
 import Three04 from './shaders/Three04';
 import Three05 from './shaders/Three05';
 import ContactPage from './page/Contact/ContactPage';
+import Service from './page/service/Service';
 
 function App() { 
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -49,6 +50,7 @@ function App() {
         <Route path='/register' element={<Register/>}></Route>
         <Route path='/mypage' element={<MyPage/>}></Route>
         <Route path='/contact' element={<ContactPage/>}></Route>
+        <Route path='/recommendgift' element={<Service/>}></Route>
         <Route path='/cart' element={<Cart/>}></Route>
         <Route path='/guest' element={<Guest/> }></Route>
 
