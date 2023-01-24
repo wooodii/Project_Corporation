@@ -10,12 +10,15 @@ const ClientPage = () => {
         <div 
           style={{backgroundColor : "#eee",
            width : "100%", height : "300px"}}>
-
-            최선을 다해 고객님의 문의를 응대합니다.
+            <p style={{fontSize: "2em", textAlign : "left",}}>
+            최선을 다해 고객님의 문의를 응대합니다. <br/>
             아래 메뉴 사항을 확인해주세요
+            </p>
         </div>
         <div style={{marginTop : "-2.6em"}}>
-      <Tabs defaultActiveKey="profile" id="justify-tab-example" className="mb-3" justify >
+      <Tabs defaultActiveKey="profile" 
+              id="justify-tab-example" 
+              className="mb-3" justify >
       <Tab eventKey="home" title="공지사항">
 
       </Tab>

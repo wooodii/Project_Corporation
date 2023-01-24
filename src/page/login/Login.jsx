@@ -99,7 +99,7 @@ const Login = () => {
 
                 <input type="email" placeholder="이메일"
                  onChange={(e) => {setLoginEmail(e.target.value); 
-                 }}/> 
+                 }}/>
 
                 <input type="password" placeholder="비밀번호" 
                 onChange={(e) => { setLoginPassword(e.target.value); 

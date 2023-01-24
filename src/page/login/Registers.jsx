@@ -50,40 +50,63 @@ const Register = () => {
     };
 
     return(
-        <>
+        <div className={styles.back}>
+
+            <div className={styles.wrap}>
             <h3>회원가입</h3>
             <hr />
-            <p style={{fontSize :"0.8rem"}}>
+
+            <p>
+                가고 싶은 곳, 머물고 싶은 곳
+                한샘에 오신 것을 환영합니다.
+            </p>
+
+            <p>
             회원가입을 위한 필수 정보를 입력해주세요. <br/>
             회원가입이 완료되면 로그인 페이지로 이동합니다.</p>
 
-            <form onSubmit={register}>
-                <Row>
-                    <label htmlFor="">
-                        <span>이름</span>
-                        <input value={name} onChange={(e) => {setName(e.target.value)}} placeholder="Name" />
-                    </label>
-                </Row>
+            <form className={styles.form} onSubmit={register}>
+                <div>
+                    <label for="name"> 성함　　 </label>
+                        <input 
+                        className={styles.input}
+                        id="name"
+                        value={name} 
+                        onChange={(e) => {setName(e.target.value)}} 
+                        placeholder="" />
+                </div>
 
-                <Row>
-                    <label>
-                        <span>이메일</span>
-                        <input value={email} onChange={(e) => {setEmail(e.target.value)}} placeholder="Email" />
-                        <p style={{color : "red"}}>{emailError} </p>
-                    </label>
-                </Row>
+                <div>
+                    <label for="email">이메일　 </label>
+                        <input 
+                        id="email"
+                        className={styles.input}
+                        value={email} 
+                        onChange={(e) => {setEmail(e.target.value)}} 
+                        placeholder="" />
+                        {/* <p style={{color : "red"}}>{emailError} </p> */}
+                </div>
 
-                <Row>
-                    <label htmlFor="">
-                        <span>비밀번호</span>
-                        <input value={password} onChange={(e) => {setPassword(e.target.value)}} placeholder="password" />
-                    </label>
-                    <p style={{color : "red"}}>{pwdError} </p>
-                </Row>
-                <button type="submit">회원가입</button>
+                <div>
+                    <label for="password">비밀번호</label>
+                        <input 
+                        id="password" 
+                        className={styles.input}
+                        value={password} 
+                        onChange={(e) => {setPassword(e.target.value)}} 
+                        placeholder="6자리 이상 입력하세요" />
+                    {/* <p style={{color : "red"}}>{pwdError} </p> */}
+                </div>
+                
+                
+                <button className={styles.register_btn} type="submit">회원가입</button>
 
             </form>
-        </>
+
+
+            </div>
+
+        </div>
     )
     }
 
