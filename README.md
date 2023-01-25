@@ -1,5 +1,13 @@
 # Getting Started with Create React App
 
+## 사용언어
+html / css / javascript 
+React / Node.js 
+
+## 소개
+인테리어 디자인 소개 페이지입니다.
+ 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
