@@ -1,7 +1,10 @@
 .wrap{
     display: flex;
     width : 100%;
-    height : 100%;
+    height : 1000px;
+    background-image: url(../../asset/loginimage.png);
+    background-size: cover ;
+    position :relative;
 }
 
 .wrap > li {
@@ -10,7 +13,7 @@
 
 input[type=email]{
     border : none;
-    background-color: #eee;
+    background-color: white;
     border-radius: 5px;
     padding : 0.3em 1em;
     margin-bottom : 1em;
@@ -20,7 +23,7 @@ input[type=email]{
 
 input[type=password]{
     border : none;
-    background-color: #eee;
+    background-color: white;
     border-radius: 5px;
     padding : 0.3em 1em;
     margin-bottom : 1em;
@@ -36,8 +39,9 @@ button{
 .main1{
     text-align : left;
     margin : 0 auto;
-    margin-left : 3em;
+    margin-left : 12em;
     width : 50%;
+    color : white;
 }
 
 .main1 > div {
@@ -51,7 +55,7 @@ button{
 }
 
 .main2 {
-
+    position : relative;
 }
 
 .main2 > div{
@@ -59,10 +63,23 @@ button{
 }
 
 .login_box{
-    border : 2px solid black;
     margin : 0 5em;
+    padding : 8em 0;
+    border-radius: 10px;
+}
+
+
+.backgroundwhite{
+    margin : 0 5em;
+    width : 800px;
+    height : 700px;
     padding : 10em 0;
     border-radius: 10px;
+    background-color: white;
+    opacity: 80%;
+    position :absolute;
+    top :100px;
+    left : 950px;
 }
 
 .login_btn{
@@ -72,8 +89,31 @@ button{
     border-radius: 5px;
 }
 
+.login_btn:hover{
+    border : 2px solid black;
+    background-color: black;
+    color: white;
+    padding : 0.3em 1em;
+    margin-right : 15px;
+    border-radius: 5px;
+}
+
 .google_btn{
     border : 2px solid black;
     padding : 0.3em 1em;
+    margin-right : 15px;
     border-radius: 5px;
+}
+
+.google_btn:hover{
+    border : 2px solid black;
+    background-color: black;
+    color: white;
+    padding : 0.3em 1em;
+    margin-right : 15px;
+    border-radius: 5px;
+}
+
+.inputbox:focus{
+    outline: 2px solid black;
 }

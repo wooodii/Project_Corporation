@@ -26,7 +26,7 @@
 }
 
 h1 {
-    font-size : 40px;
+    font-size : 100px;
 }
 
 .intro_text > h1,
@@ -170,7 +170,7 @@ h1 {
 }
 
 .main_text2{
-    height : 290px;
+    height : 280px;
     width :100%;
     background-color: #F28705;
 }

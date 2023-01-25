@@ -4,8 +4,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginState, logoutState } from "../../Modules/loginSlice";
-
 import { addUserInfo } from "../../Modules/userInfoSlice";
+import Footer from "../Footer";
 import style from './Login.module.css';
 
 const Login = () => {
@@ -76,7 +76,7 @@ const Login = () => {
     }
 
     return (
-
+        <>
         <ul className={style.wrap}>
             <li className={style.main1}>
                 <div>
@@ -88,20 +88,23 @@ const Login = () => {
                     다양한 서비스는 물론, 할인 혜택까지 누리세요.
                 </p>
             </li>
+            
+            <div className={style.backgroundwhite}>
+
+            </div>
 
             <li className={style.main2}>
-                
                 <div className={style.login_box}>
                 <div style={{fontSize : "2em"}}>
                 로그인
                 </div>
                 <br/>
 
-                <input type="email" placeholder="이메일"
+                <input type="email" placeholder="이메일" className={style.inputbox}
                  onChange={(e) => {setLoginEmail(e.target.value); 
                  }}/>
 
-                <input type="password" placeholder="비밀번호" 
+                <input type="password" placeholder="비밀번호" className={style.inputbox}
                 onChange={(e) => { setLoginPassword(e.target.value); 
                 }}/>
                 <p style={{fontSize : "0.8rem", color : "red"}}>{LoginCheck} </p>
@@ -116,7 +119,8 @@ const Login = () => {
             </li>
         
         </ul>
-
+        <Footer/>
+        </>
     );
 }
 

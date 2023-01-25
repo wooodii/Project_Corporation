@@ -61,7 +61,7 @@ const NavBar = (props) => {
                     로그아웃
                   </Nav.Link> 
                 <Nav.Link style={{marginRight : "2em"}} href='/register'>정보수정</Nav.Link>
-                <Nav.Link style={{marginRight : "2em"}} href='/client'>고객센터</Nav.Link>
+                <Nav.Link style={{marginRight : "2em"}} href='/'>고객센터</Nav.Link>
                 {/* <CartBtn onClick={props.onshowCart}/> */}
               </Nav> 
             </Navbar.Collapse>
@@ -84,8 +84,8 @@ const NavBar = (props) => {
                   <span>로그인</span>}
                   </Nav.Link> 
                 <Nav.Link style={{marginRight : "1em"}} href='/register'>회원가입</Nav.Link>
-                <Nav.Link style={{marginRight : "1em"}} href='/client'>고객센터</Nav.Link>
-                {/* <CartBtn onClick={props.onshowCart}/> */}
+                <Nav.Link style={{marginRight : "1em"}} href='/'>고객센터</Nav.Link>
+                {/* <CartBtn onClick={props.onshowCart}/> 원래 고객센터는 client 임*/}
               </Nav> 
             </Navbar.Collapse>
         </Navbar>

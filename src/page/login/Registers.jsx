@@ -57,17 +57,13 @@ const Register = () => {
             <hr />
 
             <p>
-                가고 싶은 곳, 머물고 싶은 곳
-                한샘에 오신 것을 환영합니다.
+                가고 싶은 곳, 머물고 싶은 곳 <br/>
+                <span style={{color : "#F28705", fontWeight : "bold"}}>한샘 </span>에 오신 것을 환영합니다.
             </p>
-
-            <p>
-            회원가입을 위한 필수 정보를 입력해주세요. <br/>
-            회원가입이 완료되면 로그인 페이지로 이동합니다.</p>
 
             <form className={styles.form} onSubmit={register}>
                 <div>
-                    <label for="name"> 성함　　 </label>
+                    <label for="name"> 이름　　 </label>
                         <input 
                         className={styles.input}
                         id="name"
@@ -94,11 +90,11 @@ const Register = () => {
                         className={styles.input}
                         value={password} 
                         onChange={(e) => {setPassword(e.target.value)}} 
-                        placeholder="6자리 이상 입력하세요" />
+                        placeholder="　6자리 이상 입력하세요" />
                     {/* <p style={{color : "red"}}>{pwdError} </p> */}
                 </div>
                 
-                
+                <p>회원가입이 완료되면 로그인 페이지로 이동합니다.</p>
                 <button className={styles.register_btn} type="submit">회원가입</button>
 
             </form>
