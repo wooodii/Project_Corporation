@@ -7,3 +7,33 @@
   list-style: none;
   text-align: left;
 }
+
+p{
+  font-size : 15px;
+}
+
+.nav_container:focus{
+    background-color : "#eee" !important;
+}
+
+
+.nav_link:hover{
+  background-color : "#eee" !important;
+}
+
+
+.nav_link > p {
+  font-size : 25px !important;
+  text-align : center !important;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: black !important;
+  background-color: var(--bs-gray-500) !important;
+}
+
+.nav-pills {
+  --bs-nav-pills-border-radius: 0.375rem !important;
+  --bs-nav-pills-link-active-color: black !important;
+  --bs-nav-pills-link-active-bg: #eee !important;
+}
